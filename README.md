@@ -1,6 +1,172 @@
-# GameWeave NFT Interoperability Platform
+# Release Tree Library
 
-A platform enabling cross-game NFT assets with standardized protocols for metadata and functionality, allowing true digital ownership and seamless asset conversion between different gaming environments.
+## Overview
+
+Release Tree Library provides developers with a comprehensive solution for managing software releases, tracking versions, and maintaining detailed metadata across different platforms. The library offers:
+
+- Centralized registry for digital asset releases
+- Version tracking and dependency management
+- Standardized metadata and tagging system
+- Release capability definitions
+- Flexible permissions and access control
+- Cross-platform release information
+
+## Architecture
+
+Release Tree is built around a central registry contract that manages release metadata, versions, and cross-platform compatibility.
+
+```mermaid
+graph TD
+    A[Registry Contract] --> B[Release Registry]
+    A --> C[Version Tracking]
+    A --> D[Metadata System]
+    A --> E[Dependency Management]
+    A --> F[Permissions]
+    
+    B --> G[Release Metadata]
+    B --> H[Platform Information]
+    
+    C --> I[Version Numbers]
+    C --> J[Release History]
+    C --> K[Semantic Versioning]
+    
+    D --> L[Artifact Categories]
+    D --> M[Release Tags]
+    
+    E --> N[Dependency Definitions]
+    E --> O[Compatibility Rules]
+    
+    F --> P[Access Control]
+    F --> Q[Authorization Levels]
+```
+
+The system uses several key data structures:
+- Release Registry: Stores release metadata and platform information
+- Version Tracking: Manages semantic versioning and release history
+- Metadata System: Defines and tracks release attributes
+- Dependency Management: Handles cross-platform compatibility
+- Permissions: Controls access and authorization levels
+
+## Contract Documentation
+
+### release-registry.clar
+
+This is the core contract managing the Release Tree Library's functionality.
+
+#### Key Functions
+
+**Release Management:**
+- `register-release`: Create a new release in the registry
+- `update-release`: Modify existing release details
+- `get-release`: Retrieve release information
+- `list-releases-by-developer`: List releases by developer
+
+**Version Tracking:**
+- `create-version`: Register a new version for a release
+- `update-version`: Modify version metadata
+- `get-version`: Retrieve version details
+- `check-version-compatibility`: Verify cross-platform compatibility
+
+**Metadata System:**
+- `register-release-category`: Define new release categories
+- `set-release-tag`: Assign tags to releases
+- `get-release-tag`: Retrieve release tag information
+
+**Dependency Management:**
+- `register-dependency`: Define release dependencies
+- `set-release-compatibility`: Configure cross-platform rules
+- `get-release-dependencies`: Check release dependencies
+
+## Getting Started
+
+### Prerequisites
+- Clarinet
+- Stacks wallet for deployment
+- Understanding of semantic versioning
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies
+```bash
+clarinet install
+```
+3. Test the contracts
+```bash
+clarinet test
+```
+
+### Basic Usage
+
+1. Register a release:
+```clarity
+(contract-call? .release-registry register-release 
+    "release-123" 
+    "My Software" 
+    (some "https://mysoftware.com") 
+    "Software description")
+```
+
+2. Create a version:
+```clarity
+(contract-call? .release-registry create-version
+    "release-123"
+    "1.0.0"
+    "https://artifact.url"
+    u500) ;; 5% maintenance fee
+```
+
+3. Set release compatibility:
+```clarity
+(contract-call? .release-registry set-release-compatibility
+    "release-123"
+    "platform-abc"
+    "{\"requirements\":\"min version 1.2.3\"}")
+```
+
+## Development
+
+### Testing
+
+Run the test suite:
+```bash
+clarinet test
+```
+
+### Local Development
+
+1. Start Clarinet console:
+```bash
+clarinet console
+```
+
+2. Deploy contracts:
+```bash
+clarinet deploy
+```
+
+## Security Considerations
+
+### Permissions
+- Contract owner has administrative privileges
+- Developers can manage their own releases
+- Version creators can update metadata
+- Compatibility rules require proper authorization
+
+### Limitations
+- Maximum maintenance fee is 10%
+- Release IDs limited to 50 characters
+- Maximum 50 versions per release
+- Metadata URL length limited to 255 characters
+
+### Best Practices
+- Verify authorization before operations
+- Validate all input parameters
+- Use semantic versioning
+- Follow standardized JSON formats
+- Regular security audits recommended
+
+A Clarity smart contract library for managing release and versioning of digital assets with robust tracking, metadata management, and cross-platform compatibility.
 
 ## Overview
 
